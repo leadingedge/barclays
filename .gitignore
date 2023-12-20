@@ -164,5 +164,4 @@ cython_debug/
 # dbt core
 dbt_env
 logs
-profiles.yml
 target
