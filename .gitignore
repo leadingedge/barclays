@@ -162,8 +162,7 @@ cython_debug/
 .vscode
 
 # dbt core
-dbt_env/
+dbt_env
 logs
 profiles.yml
-*.log
 target
