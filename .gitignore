@@ -166,3 +166,4 @@ dbt_env/
 logs
 profiles.yml
 *.log
+target
