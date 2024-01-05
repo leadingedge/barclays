@@ -1,0 +1,89 @@
+
+version: 2
+
+models:
+  - name: customer_presentation
+    description: '{{doc("dim_customer")}}'
+    config:
+      materialized: table
+      contract:
+        enforced: true       
+    columns:
+      - name: cust_id
+        description: '{{doc("customer_cust_id")}}'
+        data_type: number(2,0)
+      - name: short_description
+        description: '{{doc("customer_name")}}'
+        data_type: varchar(20)
+      - name: city
+        description: '{{doc("customer_city")}}'
+        data_type: varchar(20)
+      - name: postcode
+        description: '{{doc("customer_postcode")}}'     
+        data_type: varchar(20)
+      - name: date_time
+        description: '{{doc("dim_customer_date_time")}}'  
+        data_type:  timestamp_ltz
+      - name: hash_id    
+        description: '{{doc("dim_customer_hash_id")}}'   
+        data_type:  number(38,0)
+
+
+
+  - name: product_presentation
+    description: '{{doc("dim_product")}}'
+    config:
+      materialized: table
+      contract:
+        enforced: true   
+    columns:
+      - name: prod_id
+        description: '{{doc("product_prod_id")}}'
+        data_type: number(2,0)
+      - name: short_description
+        description: '{{doc("product_name")}}' 
+        data_type: varchar(20)
+      - name: unit_price
+        description: '{{doc("product_unit_price")}}'    
+        data_type: number(10,2)
+      - name: date_time
+        description: '{{doc("dim_product_date_time")}}'  
+        data_type: timestamp_ltz
+      - name: hash_id    
+        description: '{{doc("dim_product_hash_id")}}'  
+        data_type:  number(38,0)    
+
+
+
+  - name: customer_product_presentation
+    description: '{{doc("fact_sales")}}'
+    config:
+      materialized: table
+      contract:
+        enforced: true   
+    columns:
+      - name: cust_id
+        description: '{{doc("customer_cust_id")}}'   
+        data_type: number(2,0) 
+      - name: prod_id
+        description: '{{doc("product_prod_id")}}'
+        data_type: number(2,0)
+      - name: product_description
+        description: '{{doc("product_name")}}' 
+        data_type: varchar(20)
+      - name: transaction_date
+        description: '{{doc("customer_product_transaction_date")}}' 
+        data_type: date
+      - name: units_sold
+        description: '{{doc("customer_product_units_sold")}}'  
+        data_type: number(2,0)
+      - name: revenue
+        description: '{{doc("fact_sales_revenue")}}'
+        data_type: number(18,2)
+      - name: date_time
+        description: '{{doc("fact_sales_date_time")}}'  
+        data_type: timestamp_ltz
+      - name: hash_id    
+        description: '{{doc("fact_sales_hash_id")}}'      
+        data_type: number(38,0)                
+                                
